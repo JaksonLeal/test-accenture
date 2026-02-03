@@ -26,7 +26,7 @@ public class AddBranchToFranchiseUC {
 				.switchIfEmpty(Mono.error(new IllegalArgumentException("Franchise not found"))).flatMap(franchise -> {
 
 					// Se crea la sucursal
-					Branch branch = new Branch(branchId, branchName);
+					Branch branch = new Branch(branchId, branchName, franchiseId);
 
 					// Se agrega al agregado de franquicia (regla de negocio)
 					franchise.addBranch(branch);

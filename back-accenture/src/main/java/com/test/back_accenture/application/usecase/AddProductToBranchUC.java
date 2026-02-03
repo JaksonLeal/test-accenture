@@ -11,21 +11,18 @@ public class AddProductToBranchUC {
 	private final BranchRepository branchRepository;
 	private final ProductRepository productRepository;
 
-	public AddProductToBranchUC(
-            BranchRepository branchRepository,
-            ProductRepository productRepository
-    ) {
-        this.branchRepository = branchRepository;
-        this.productRepository = productRepository;
-    }
+	public AddProductToBranchUC(BranchRepository branchRepository, ProductRepository productRepository) {
+		this.branchRepository = branchRepository;
+		this.productRepository = productRepository;
+	}
 
-	public Mono<Product> execute(Long branchId, Long productId, String productName, int stock) {
+	public Mono<Product> execute(Long productId, String productName, int stock, Long branchId) {
 
 		return branchRepository.findById(branchId)
 				.switchIfEmpty(Mono.error(new IllegalArgumentException("Branch not found"))).flatMap(branch -> {
 
 					// Se crea el producto
-					Product product = new Product(productId, productName, stock);
+					Product product = new Product(productId, productName, stock, branchId);
 
 					// Se agrega al dominio
 					branch.addProduct(product);

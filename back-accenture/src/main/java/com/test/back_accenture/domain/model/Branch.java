@@ -8,10 +8,12 @@ public class Branch {
 	private final Long id;
 	private String name;
 	private final List<Product> products;
+	private Long franchiseId;
 
-	public Branch(Long id, String name) {
+	public Branch(Long id, String name, Long franchiseId) {
 		this.id = id;
 		this.name = name;
+		this.franchiseId = franchiseId;
 		this.products = new ArrayList<>();
 	}
 
@@ -21,6 +23,10 @@ public class Branch {
 
 	public String getName() {
 		return name;
+	}
+
+	public Long getFranchiseId() {
+		return franchiseId;
 	}
 
 	// Plus: actualizar nombre de la sucursal

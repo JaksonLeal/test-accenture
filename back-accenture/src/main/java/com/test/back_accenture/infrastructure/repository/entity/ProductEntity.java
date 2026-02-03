@@ -1,13 +1,19 @@
-package com.test.back_accenture.domain.model;
+package com.test.back_accenture.infrastructure.repository.entity;
 
-public class Product {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-	private final Long id;
+@Table("products")
+public class ProductEntity {
+
+	@Id
+	private Long id;
+
 	private String name;
 	private int stock;
 	private Long branchId;
 
-	public Product(Long id, String name, int stock, Long branchId) {
+	public ProductEntity(Long id, String name, int stock, Long branchId) {
 		this.id = id;
 		this.name = name;
 		this.stock = stock;
@@ -22,17 +28,8 @@ public class Product {
 		return name;
 	}
 
-	// Cambio de nombre (plus del enunciado)
-	public void rename(String newName) {
-		this.name = newName;
-	}
-
 	public int getStock() {
 		return stock;
-	}
-
-	public void updateStock(int newStock) {
-		this.stock = newStock;
 	}
 
 	public Long getBranchId() {
